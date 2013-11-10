@@ -1,0 +1,258 @@
+html {
+    height: 100%;
+}
+html,
+body,
+.container {
+    min-height: 100%;
+}
+body {
+    font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    color: #333333;
+    background-color: #eee !important;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+img {
+    max-width: 100%;
+}
+.active {
+    background: rgba(0, 0, 0, 0.1);
+}
+.border-sizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    height: 100%;
+}
+.container {
+    position: relative;
+}
+.galleryWrapper {
+    width: 20%;
+    position: relative;
+    float: left;
+    text-align: right;
+    padding: 2em 1em;
+    z-index: 50;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: left 0.3s ease;
+    -moz-transition: left 0.3s ease;
+    -ms-transition: left 0.3s ease;
+    -o-transition: left 0.3s ease;
+    transition: left 0.3s ease;
+}
+.galleryPic {
+    position: relative;
+    width: 48%;
+    float: left;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 1%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+.galleryPic img {
+    z-index: 10;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+}
+.galleryPic img.loaded {
+    opacity: 1;
+}
+.galleryPic:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+.galleryPic:hover {
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    transform: scale(0.9);
+}
+.loader {
+    width: 100%;
+    height: 100%;
+    background: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.loader:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1em 0 0 -1em;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-left: 5px solid rgba(255, 255, 255, 0.5);
+    -webkit-animation: rotation 0.5s linear infinite;
+    -moz-animation: rotation 0.5s linear infinite;
+    -o-animation: rotation 0.5s linear infinite;
+    animation: rotation 0.5s linear infinite;
+}
+.fullSizeWrapper {
+    position: fixed;
+    right: 0;
+    float: left;
+    width: 80%;
+    padding: 1em;
+    background-color: rgba(255, 255, 255, 0.7);
+    background-image: url(black_stripes.png);
+    background-repeat: repeat;
+    text-align: center;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: width 0.3s ease;
+    -moz-transition: width 0.3s ease;
+    -ms-transition: width 0.3s ease;
+    -o-transition: width 0.3s ease;
+    transition: width 0.3s ease;
+}
+.fullSizeWrapper .maximizedImg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-height: 95%;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+.hiddenPic {
+    -webkit-transform: translate(300%, -50%) !important;
+    -moz-transform: translate(300%, -50%) !important;
+    -ms-transform: translate(300%, -50%) !important;
+    -o-transform: translate(300%, -50%) !important;
+}
+.landscapeImg {
+    max-height: 100%;
+    max-width: none;
+    margin-left: -20%;
+}
+.copyrMsg {
+    position: absolute;
+    bottom: 1em;
+    left: 12em;
+    right: 12em;
+    text-transform: uppercase;
+    color: #dddddd;
+}
+.author {
+    position: absolute;
+    right: 1em;
+    bottom: 0.5em;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    font-weight: 300;
+    color: #333333;
+}
+.author span {
+    font-weight: 700;
+}
+.dropdown {
+    margin-bottom: 1em;
+}
+.dropdown-menu {
+    left: auto;
+    right: 0;
+    text-align: left;
+}
+.dropdownButton {
+    position: relative;
+    padding: 0.7em 3em 0.7em 1em;
+    border: 1px solid #dddddd;
+    background: white;
+    font-size: 1.2em;
+    text-decoration: none;
+    font-weight: 400;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.dropdownButton:hover,
+.dropdownButton:focus {
+    border: 1px solid #333333;
+    text-decoration: none;
+}
+.dropdownButton:hover:after,
+.dropdownButton:focus:after {
+    border-color: #333333;
+}
+.dropdownButton:after {
+    content: "";
+    display: block;
+    width: 0.7em;
+    height: 0.7em;
+    border-left: 3px solid #dddddd;
+    border-bottom: 3px solid #dddddd;
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    margin-top: -0.35em;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+@keyframes rotation {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@-webkit-keyframes rotation {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@-moz-keyframes rotation {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}

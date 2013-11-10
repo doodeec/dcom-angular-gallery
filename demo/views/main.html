@@ -1,0 +1,17 @@
+<div class="hero-unit" ng-controller="galleryCtrl">
+    <div class="galleryWrapper">
+
+        <div class="dropdown">
+            <a data-toggle="dropdown" class="dropdownButton" href="#">{{category}}</a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation" ng-repeat="cat in galleries">
+                    <a role="menuitem" ng-click="changeCat(cat)" href="#" ng-class="{active: category == cat}">{{cat}}</a>
+                </li>
+            </ul>
+        </div>
+        <div ng-repeat="pic in gallery" dcom-gallery-pic></div>
+    </div>
+    <div class="fullSizeWrapper">
+        <div dcom-full-size-pic></div>
+    </div>
+</div>
