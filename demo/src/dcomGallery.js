@@ -17,7 +17,7 @@ angular.module('dcomGallery', [])
                         scope.loaderClass = null;
 
                         var image = new Image(),
-                            link = "images/gallery/" +scope.pic+ ".jpg";
+                            link = "images/thumb/" +scope.pic+ ".jpg";
                         image.onload = function() {
                             scope.orientation = image.width > image.height ? "landscapeImg" : "portraitImg";
                             $timeout(function() {
