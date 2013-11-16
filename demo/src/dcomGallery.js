@@ -19,52 +19,58 @@ angular.module('dcomGallery', [])
                         var image = new Image(),
                             link = "images/thumb/" +scope.pic+ ".jpg";
                         image.onload = function() {
-                            scope.orientation = image.width > image.height ? "landscapeImg" : "portraitImg";
-                            $timeout(function() {
-                                scope.$apply(function(){
-                                    scope.resolvedPic = link;
-                                });
+                            scope.$apply(function(){
+                                scope.orientation = image.width > image.height ? "landscapeImg" : "portraitImg";
+                                scope.resolvedPic = link;
                             });
                         };
-                        //TODO load thumbnails, not original pictures
                         image.src = link;
 
                         scope.$watch('resolvedPic', function(val) {
                             if (val) scope.loaderClass = "loaded";
                         });
 
-                        //TODO loader of fullsize image
                         elem.bind('click', function() {
                             scope.$apply(function() {
                                 $rootScope.hidePic = true;
                                 $timeout(function(){
                                     $rootScope.fullSizeImg = scope.pic;
-                                    $rootScope.hidePic = false;
                                 }, 500);
                             });
                         });
-
-                        //TODO responsive width, thumbnail max 200px?
                     }
+                    //TODO responsive width
                 }
             }])
     .directive('dcomFullSizePic',
-    function() {
-        return {
-            restrict: 'A',
-            replace: true,
-            template: '<img ng-src="images/gallery/{{fullSizeImg}}.jpg" class="maximizedImg" ng-class="{hiddenPic: hidePic}" />',
-            link: function(scope, elem, attrs) {
-                scope.$watch(function() {
-                    return $(window).height();
-                }, function(val) {
-                    elem.parent().css('height', val+'px');
-                });
+        ['$rootScope',
+            function($rootScope) {
+                return {
+                    restrict: 'A',
+                    replace: true,
+                    template: '<img ng-src="images/gallery/{{fullSizeImg}}.jpg" class="maximizedImg" ng-class="{hiddenPic: hidePic}" />',
+                    link: function(scope, elem, attrs) {
+                        scope.$watch(function() {
+                            return $(window).height();
+                        }, function(val) {
+                            elem.parent().css('height', val+'px');
+                        });
 
-                //disable right click
-                elem.bind('contextmenu rightclick', function(e) {
-                    e.preventDefault();
-                });
-            }
-        }
-    });
+                        $rootScope.$watch('fullSizeImg', function(val) {
+                            var fullSizeImage = new Image,
+                                fullSizeLink = "images/gallery/" +val+ ".jpg";
+                            fullSizeImage.onload = function() {
+                                scope.$apply(function() {
+                                    $rootScope.hidePic = false;
+                                });
+                            };
+                            fullSizeImage.src = fullSizeLink;
+                        });
+
+                        //disable right click
+                        elem.bind('contextmenu rightclick', function(e) {
+                            e.preventDefault();
+                        });
+                    }
+                }
+}]);
