@@ -14,6 +14,7 @@ angular.module('angularGalleryApp')
                 };
                 var paramImg = $location.search().foto || null;
 
+                $rootScope.hidePic = true;
                 $scope.galleries = [];
                 $scope.changeCat = function(cat) {
                     $scope.category = cat;
@@ -31,14 +32,22 @@ angular.module('angularGalleryApp')
                 //initial gallery loading, if url param not defined or not from any galleries
                 if (!$scope.category) $scope.changeCat("Cat1");
 
-                //TODO cleanup
+                function changingFn(value) {
+                    $rootScope.hidePic = true;
+                    $timeout(function(){
+                        $rootScope.fullSizeImg = value;
+                    }, 500);
+                }
+
+                $scope.changeImg = function(val) {
+                    $scope.$apply(function() {
+                        changingFn(val);
+                    });
+                };
+
                 $scope.$watch('gallery', function(val) {
                     if (val.length && (val.indexOf($rootScope.fullSizeImg) === -1)) {
-                        $rootScope.hidePic = true;
-                        $timeout(function(){
-                            $rootScope.fullSizeImg = $scope.gallery[0];
-                            $rootScope.hidePic = false;
-                        }, 500);
+                        changingFn($scope.gallery[0]);
                     }
                 });
 
@@ -47,4 +56,11 @@ angular.module('angularGalleryApp')
                 });
 
                 //TODO gallery name in path
+
+                //check for route change and clear URL params if necessary
+                /*$scope.$on('$routeChangeSuccess', function() {
+                    if (/gallery/i.test($location.path())) {
+                        $location.search({});
+                    }
+                });*/
             }]);

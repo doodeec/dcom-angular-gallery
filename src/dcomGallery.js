@@ -2,19 +2,19 @@
 
 angular.module('dcomGallery', [])
     .directive('dcomGalleryPic',
-        ['$rootScope', '$timeout',
-            function($rootScope, $timeout) {
+        [
+            function() {
                 return {
                     restrict: 'A',
                     replace: true,
-                    //TODO isolate scope
+                    scope: true,
                     template: '<div class="galleryPic">' +
-                        '<img ng-src="{{resolvedPic}}" class="{{loaderClass}} {{orientation}}" />' +
+                        '<img ng-src="{{resolvedPic}}" ng-class="{loaded: resolvedPic}" class="{{orientation}}" />' +
                         '<div class="loader"></div>' +
                         '</div>',
                     link: function(scope, elem, attrs) {
                         scope.resolvedPic = null;
-                        scope.loaderClass = null;
+                        scope.orientation = null;
 
                         var image = new Image(),
                             link = "images/thumb/" +scope.pic+ ".jpg";
@@ -26,20 +26,11 @@ angular.module('dcomGallery', [])
                         };
                         image.src = link;
 
-                        scope.$watch('resolvedPic', function(val) {
-                            if (val) scope.loaderClass = "loaded";
-                        });
-
-                        elem.bind('click', function() {
-                            scope.$apply(function() {
-                                $rootScope.hidePic = true;
-                                $timeout(function(){
-                                    $rootScope.fullSizeImg = scope.pic;
-                                }, 500);
-                            });
+                        elem.bind('click', function(e) {
+                            e && e.preventDefault();
+                            scope.changeImg(scope.pic);
                         });
                     }
-                    //TODO responsive width
                 }
             }])
     .directive('dcomFullSizePic',
@@ -48,7 +39,8 @@ angular.module('dcomGallery', [])
                 return {
                     restrict: 'A',
                     replace: true,
-                    template: '<img ng-src="images/gallery/{{fullSizeImg}}.jpg" class="maximizedImg" ng-class="{hiddenPic: hidePic}" />',
+                    template: '<img ng-src="images/gallery/{{fullSizeImg}}.jpg" class="maximizedImg"' +
+                        'ng-class="{hiddenPic: hidePic}" />',
                     link: function(scope, elem, attrs) {
                         scope.$watch(function() {
                             return $(window).height();
