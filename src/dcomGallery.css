@@ -149,9 +149,11 @@ body {
 }
 .fullSizeWrapper .maximizedImg {
     position: absolute;
-    top: 50%;
+    padding: 2em 1em 4em;
+    max-height: 100%;
+    max-width: 100%;
     left: 50%;
-    max-height: 95%;
+    top: 50%;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -ms-transition: all 0.5s ease;
@@ -163,10 +165,11 @@ body {
     -o-transform: translate(-50%, -50%);
 }
 .hiddenPic {
-    -webkit-transform: translate(300%, -50%) !important;
+    /*-webkit-transform: translate(300%, -50%) !important;
     -moz-transform: translate(300%, -50%) !important;
     -ms-transform: translate(300%, -50%) !important;
-    -o-transform: translate(300%, -50%) !important;
+    -o-transform: translate(300%, -50%) !important;*/
+    left: 200% !important;
 }
 .landscapeImg {
     max-height: 100%;
