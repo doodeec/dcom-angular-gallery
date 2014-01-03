@@ -1,20 +1,14 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html class="no-js">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="src/dcomGallery.css">
-        <link rel="stylesheet" href="bower_components/bootstrap/styles/bootstrap.css">
-        <!-- endbuild -->
+    <link rel="stylesheet" href="src/dcomGallery.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/styles/bootstrap.css">
 </head>
   <body ng-app="angularGalleryApp">
     <!--[if lt IE 7]>
@@ -26,20 +20,15 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
 
+    <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
 
-        <!-- build:js scripts/modules.js -->
-        <script src="bower_components/jquery/jquery.min.js"></script>
-        <script src="bower_components/bootstrap/js/dropdown.js"></script>
-        <script src="src/dcomGallery.min.js"></script>
-        <!-- endbuild -->
+    <script src="bower_components/bootstrap/js/dropdown.js"></script>
+    <script src="src/dcomGallery.js"></script>
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <!-- endbuild -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
 </body>
 </html>
