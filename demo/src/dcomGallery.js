@@ -46,6 +46,7 @@ angular.module('dcomGallery', [])
                         checkVisibility();
 
                         angular.element($window).bind("scroll", checkVisibility);
+                        angular.element($window).bind("resize", checkVisibility);
 
                         elem.bind('click', function(e) {
                             e && e.preventDefault();
