@@ -7,7 +7,7 @@ angular.module('dcomGallery', [])
                 var isVisible = function(elem) {
                     var pos = elem.position().top,
                         winH = window.innerHeight,
-                        scrollY = window.scrollY;
+                        scrollY = window.scrollY || document.documentElement.scrollTop;
 
                     return (pos > scrollY && pos < winH + scrollY);
                 };
@@ -84,6 +84,7 @@ angular.module('dcomGallery', [])
                         //disable right click
                         elem.bind('contextmenu rightclick', function(e) {
                             e.preventDefault();
+                            e.stopPropagation();
                         });
                     }
                 }
